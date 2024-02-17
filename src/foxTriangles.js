@@ -9,34 +9,100 @@ function webGL() {
   gl.clearColor(0, 0, 0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  const triangleVertices = [
-    -0.3,
-    0.7,
-    0.0, // top left (0)
-    0.3,
-    0.7,
-    0.0, // top right (1)
-    0.0,
-    0.0,
-    0.0, // middle (2)
-    0.3,
-    -0.7,
-    0.0, // bottom right (3)
-    -0.3,
-    -0.7,
-    0.0, // bottom left (4)
+  const foxVertices = [
+    -0.175, // A (X)
+    0.6, // A (Y)
+    0.0, // A (Z)
+    -0.1, // B (X)
+    0.5, // B (Y)
+    0.0, // B (Z)
+    -0.18, // C (X)
+    0.4, // C (Y)
+    0.0, // C (Z)
+    -0.025, // D (X)
+    0.6, // D (Y)
+    0.0, // D (Z)
+    -0.02, // E (X)
+    0.4, // E (Y)
+    0.0, // E (Z)
+    -0.1, // F (X)
+    0.25, // F (Y)
+    0.0, // F (Z)
+    -0.06, // G (X)
+    0.325, // G (Y)
+    0.0, // G (Z),
+    -0.18, // H (X)
+    0.1, // H (Y)
+    0.0, // H (Z)
+    0.1, // I (X)
+    0.0, // I (Y)
+    0.0, // I (Z)
+    -0.06, // J (X)
+    -0.1, // J (Y)
+    0.0, // J (Z)
+    -0.06, // K (X)
+    -0.25, // K (Y)
+    0.0, // K (Z),
+    0.04, // L (X)
+    -0.1, // L (Y)
+    0.0, // L (Z)
+    -0.16, // M (X)
+    -0.4, // M (Y)
+    0.0, // M (Z)
+    0.04, // N (X)
+    -0.4, // N (Y)
+    0.0, // N (Z)
+    0.15, // O (X)
+    -0.25, // O (Y)
+    0.0, // O (Z)
+    0.125, // P (X)
+    -0.4, // P (Y)
+    0.0, // P (Z)
+    0.25, // Q (X)
+    -0.25, // Q (Y)
+    0.0, // Q (Z)
   ];
 
-  const indices = [0, 1, 2, 2, 3, 4];
+  /**
+   * A: 0
+   * B: 1
+   * C: 2
+   * D: 3
+   * E: 4
+   * F: 5
+   * G: 6
+   * H: 7
+   * I: 8
+   * J: 9
+   * K: 10
+   * L: 11
+   * M: 12
+   * N: 13
+   * O: 14
+   * P: 15
+   * Q: 16
+   */
 
+  // Triangle Indices
+  /**
+   * ABC: 0, 1, 2
+   * BDE: 1, 3, 4
+   * CBE: 2, 1, 4
+   * CEF: 2, 4, 5
+   * GHJ: 6, 7, 9
+   * GKI: 6, 8, 10
+   * LMN: 11, 12, 13
+   * NOP: 13, 14, 15
+   * POQ: 15, 14, 16
+   */
+  const indices = [
+    0, 1, 2, 1, 3, 4, 2, 1, 4, 2, 4, 5, 6, 7, 9, 6, 8, 10, 11, 12, 13, 13, 14,
+    15, 15, 14, 16,
+  ];
   let rectVBO = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, rectVBO);
 
-  gl.bufferData(
-    gl.ARRAY_BUFFER,
-    new Float32Array(triangleVertices),
-    gl.STATIC_DRAW
-  );
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(foxVertices), gl.STATIC_DRAW);
 
   let rectIBO = gl.createBuffer();
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, rectIBO);
